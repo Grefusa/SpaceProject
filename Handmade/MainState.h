@@ -35,10 +35,12 @@
 #ifndef MAIN_STATE_H
 #define MAIN_STATE_H
 
+#include "Enemy.h"
 #include "GameState.h"
 #include "HUD.h"
 #include "HUDCamera.h"
 #include "MainCamera.h"
+#include "Player.h"
 
 class MainState : public GameState
 {
@@ -60,6 +62,11 @@ private :
 	HUD* m_HUD;
 	HUDCamera* m_HUDCamera;
 	MainCamera* m_mainCamera;
+	
+	Player y_player;
+
+	Player* m_player;
+	Enemy* m_enemy;
 
 };
 
