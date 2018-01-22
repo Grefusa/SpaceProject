@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 #include "DebugManager.h"
 #include "EndState.h"
 #include "InputManager.h"
@@ -62,39 +63,41 @@ bool MainState::Update()
 
 	//ADD YOUR CODE HERE...
 
-	const Uint8* keys;
 
-	keys = TheInput::Instance()->GetKeyStates();
 
-	if (keys[SDL_SCANCODE_LEFT]) {
+	//const Uint8* keys;
 
-		std::cout << "LEFT" << std::endl;
-	}
+	//keys = TheInput::Instance()->GetKeyStates();
 
-	if (keys[SDL_SCANCODE_RIGHT]) {
+	//if (keys[SDL_SCANCODE_LEFT]) {
 
-		std::cout << "RIGHT" << std::endl;
-	}
+	//	std::cout << "LEFT" << std::endl;
+	//}
 
-	if (keys[SDL_SCANCODE_UP]) {
+	//if (keys[SDL_SCANCODE_RIGHT]) {
 
-		std::cout << "UP" << std::endl;
+	//	std::cout << "RIGHT" << std::endl;
+	//}
 
-	}
+	//if (keys[SDL_SCANCODE_UP]) {
 
-	if (TheInput::Instance()->GetLeftButtonState() == InputManager::DOWN) {
+	//	std::cout << "UP" << std::endl;
 
-		std::cout << "left button click" << std::endl;
-	}
-	
-	if (TheInput::Instance()->IsKeyPressed()) {
+	//}
 
-		std::cout << "key pressed!" << std::endl;
-	}
+	//if (TheInput::Instance()->GetLeftButtonState() == InputManager::DOWN) {
 
-	float x = TheInput::Instance()->GetMouseMotion().x;
+	//	std::cout << "left button click" << std::endl;
+	//}
+	//
+	//if (TheInput::Instance()->IsKeyPressed()) {
 
-	std::cout << x << std::endl;
+	//	std::cout << "key pressed!" << std::endl;
+	//}
+
+	//float x = TheInput::Instance()->GetMouseMotion().x;
+
+	//std::cout << x << std::endl;
 
 	return true;
 
@@ -119,7 +122,7 @@ bool MainState::Draw()
 	TheDebug::Instance()->DrawCoordSystem3D(15.0f);
 
 #endif
-	
+
 #endif
 
 #ifdef GAME_2D
@@ -134,6 +137,47 @@ bool MainState::Draw()
 #endif
 
 #endif
+
+	static float f = 0.0f;
+
+	f += 0.01f;
+
+	static float angle2 = 0.0f;
+
+	angle2 += 0.08f;
+
+	float astCos = cos(f) * 5;
+
+	float astSin = sin(f) * 5;
+
+	float astCos2 = cos(angle2) * 2;
+
+	float astSin2 = sin(angle2) * 2;
+
+	float box = sin(f);
+
+	std::cout << astCos << std::endl;
+
+	std::cout << astSin << std::endl;
+
+	TheDebug::Instance()->DrawSphere3D(1, 1, 0, 1, 1);
+	
+	GameObject::SetIdentity();
+	GameObject::Translate(astCos, astSin, 0);
+	TheDebug::Instance()->DrawSphere3D(0.5, 0, 1, 1, 1);
+	GameObject::Translate(astCos2, astSin2, 0);
+	TheDebug::Instance()->DrawSphere3D(0.2, 1, 1, 1, 1);
+
+	GameObject::SetIdentity();
+	GameObject::Translate(10, box, 0);
+	TheDebug::Instance()->DrawCube3D(2, 3, 1, 1, 0, 0, 1);
+
+	GameObject::SetIdentity();
+	GameObject::Translate(astSin2, astCos2, 0);
+	TheDebug::Instance()->DrawSphere3D(0.5, 0.3, 1, 1, 1);
+
+
+
 
 	//ADD YOUR CODE HERE...
 	////
@@ -174,9 +218,8 @@ bool MainState::Draw()
 	//GameObject::Rotate(55, 0, 1, 0);
 	//GameObject::Scale(1, 1, 1);
 	//TheDebug::Instance()->DrawSphere3D(1.3f, 0, 1, 0, 1);
-
-	m_player->Draw();
-	m_enemy->Draw();
+//	m_player->Draw();
+//	m_enemy->Draw();
 
 
 
