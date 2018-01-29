@@ -155,6 +155,7 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="PipelineManager.h" />
+    <ClInclude Include="Planet.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="Singleton.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="PipelineManager.cpp" />
+    <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="SplashScreen.cpp" />

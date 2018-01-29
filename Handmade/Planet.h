@@ -1,18 +1,17 @@
-#ifndef ENEMY_H
-#define ENEMY_H
+#ifndef PLANET_H
+#define PLANET_H
 
-#include <glm.hpp>
-#include "GameObject.h"
+#include<glm.hpp>
+#include"GameObject.h"
 
-class Enemy :
-	public GameObject
-{
+
+class Planet : Public GameObject {
+
 public:
-	Enemy();
-	virtual ~Enemy();
-
+	Planet();
+	virtual ~Planet();
+	
 	void SetVelocity(float vel);
-
 	glm::vec3 GetPos();
 
 public:
@@ -27,7 +26,7 @@ private:
 	glm::vec3 m_position;
 	glm::vec3 m_direction;
 
-};
 
+};
 
 #endif

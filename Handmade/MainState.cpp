@@ -1,4 +1,8 @@
 #include <iostream>
+#include <glm.hpp>
+#include <gtx\vector_angle.hpp>
+#include <gtx\euler_angles.hpp>
+#include <gtx\projection.hpp>
 #include <math.h>
 #include "DebugManager.h"
 #include "EndState.h"
@@ -11,7 +15,7 @@
 
 //------------------------------------------------------------------------------------------------------
 //constructor that assigns all default values
-//------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------5
 MainState::MainState(GameState* state) : GameState(state)
 {
 
@@ -63,41 +67,29 @@ bool MainState::Update()
 
 	//ADD YOUR CODE HERE...
 
+	m_player->Update();
+	m_enemy->Update();
 
 
-	//const Uint8* keys;
+	//Calculate the distance between enemy and player
 
-	//keys = TheInput::Instance()->GetKeyStates();
+	glm::vec3 distanceVec = m_player->GetPos() - m_enemy->GetPos();
 
-	//if (keys[SDL_SCANCODE_LEFT]) {
+	float distance = sqrt((distanceVec.x * distanceVec.x) + (distanceVec.y * distanceVec.y) + 
+		(distanceVec.z * distanceVec.z));
 
-	//	std::cout << "LEFT" << std::endl;
-	//}
+	std::cout << distance << std::endl;
 
-	//if (keys[SDL_SCANCODE_RIGHT]) {
+	if (distance <= 2.0f) {
 
-	//	std::cout << "RIGHT" << std::endl;
-	//}
+		std::cout << "Aah Colission!" << std::endl;
+	}
 
-	//if (keys[SDL_SCANCODE_UP]) {
+	else {
 
-	//	std::cout << "UP" << std::endl;
+		std::cout << "You are safe!" << std::endl;
+	}
 
-	//}
-
-	//if (TheInput::Instance()->GetLeftButtonState() == InputManager::DOWN) {
-
-	//	std::cout << "left button click" << std::endl;
-	//}
-	//
-	//if (TheInput::Instance()->IsKeyPressed()) {
-
-	//	std::cout << "key pressed!" << std::endl;
-	//}
-
-	//float x = TheInput::Instance()->GetMouseMotion().x;
-
-	//std::cout << x << std::endl;
 
 	return true;
 
@@ -138,88 +130,11 @@ bool MainState::Draw()
 
 #endif
 
-	static float f = 0.0f;
-
-	f += 0.01f;
-
-	static float angle2 = 0.0f;
-
-	angle2 += 0.08f;
-
-	float astCos = cos(f) * 5;
-
-	float astSin = sin(f) * 5;
-
-	float astCos2 = cos(angle2) * 2;
-
-	float astSin2 = sin(angle2) * 2;
-
-	float box = sin(f);
-
-	std::cout << astCos << std::endl;
-
-	std::cout << astSin << std::endl;
-
-	TheDebug::Instance()->DrawSphere3D(1, 1, 0, 1, 1);
-	
-	GameObject::SetIdentity();
-	GameObject::Translate(astCos, astSin, 0);
-	TheDebug::Instance()->DrawSphere3D(0.5, 0, 1, 1, 1);
-	GameObject::Translate(astCos2, astSin2, 0);
-	TheDebug::Instance()->DrawSphere3D(0.2, 1, 1, 1, 1);
-
-	GameObject::SetIdentity();
-	GameObject::Translate(10, box, 0);
-	TheDebug::Instance()->DrawCube3D(2, 3, 1, 1, 0, 0, 1);
-
-	GameObject::SetIdentity();
-	GameObject::Translate(astSin2, astCos2, 0);
-	TheDebug::Instance()->DrawSphere3D(0.5, 0.3, 1, 1, 1);
-
-
-
-
 	//ADD YOUR CODE HERE...
-	////
-	////TheDebug::Instance()->DrawVertex3D(2, 0, -3, 10, 1, 0, 0); //Draw a point
+	
 
-	////TheDebug::Instance()->DrawVector3D(-1, 1, 0, 5.0f, 0, 0, 1); //draws a vevtor from the center
-
-	////TheDebug::Instance()->DrawLine3D(1, 0, 1, 2, 0, -2, 5.0f, 0, 1, 0); //draws a line
-
-	////TheDebug::Instance()->DrawCube3D(1, 2, 3, 1, 0, 0, 0.4); //Draws a cube
-
-	////TheDebug::Instance()->DrawSphere3D(4, 0, 1, 0, 0.4); //Draws a sphere.
-
-
-	////The order matters.
-
-	//static float angle = 0.0f;
-
-	//angle += 0.6f;
-
-	//static float y = 0.0f;
-
-	//if (y <= 2.0f) {
-	//	y += 0.1f;
-	//}
-	//else {
-	//	y -= 0.1f;
-	//}
-
-	//GameObject::Translate(2, y, 4); //To move the objects throught the grid
-	//GameObject::Rotate(angle, 1, 0, 0); //Rotate the object
-	//GameObject::Scale(2, 2, 2); //Scale the object, never scale all to 0.
-	//TheDebug::Instance()->DrawCube3D(1, 1, 1, 0, 1, 1);
-
-	//GameObject::SetIdentity(); // Reset the game object settings to draw a second object.
-
-	//GameObject::Translate(2, 3, 7);
-	//GameObject::Rotate(55, 0, 1, 0);
-	//GameObject::Scale(1, 1, 1);
-	//TheDebug::Instance()->DrawSphere3D(1.3f, 0, 1, 0, 1);
-//	m_player->Draw();
-//	m_enemy->Draw();
+	m_player->Draw();
+	m_enemy->Draw();
 
 
 
