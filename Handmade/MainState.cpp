@@ -3,6 +3,7 @@
 #include <gtx\vector_angle.hpp>
 #include <gtx\euler_angles.hpp>
 #include <gtx\projection.hpp>
+#include <gtc\matrix_transform.hpp>
 #include <math.h>
 #include "DebugManager.h"
 #include "EndState.h"
@@ -135,6 +136,51 @@ bool MainState::Draw()
 
 	m_player->Draw();
 	m_enemy->Draw();
+
+
+	glm::vec2 vertex(2, 5);
+	glm::mat4 translation = glm::translate(translation, glm::vec3(-3, -1, 0));
+
+	TheDebug::Instance()->DrawVertex3D(vertex.x, vertex.y, -0, 20.0f, 0.7f, 0.1f, 0.8f);
+
+	glm::vec4 homogenous = glm::vec4(vertex, 0.0f, 1.0f);
+
+	homogenous = translation * homogenous;
+
+	vertex = glm::vec2(homogenous);
+
+	TheDebug::Instance()->DrawVector3D(vertex.x, vertex.y, 0, 20.0f, 0.4f, 0.7f, 0.2f);
+
+	glm::vec3 vertex3(2, 2, 3);
+
+	glm::mat4 rotation;
+
+	TheDebug::Instance()->DrawVector3D(vertex3.x, vertex3.y, vertex3.z, 5.0f, 0.7f, 0.1, 0.8);
+
+	rotation = glm::rotate(rotation, glm::radians(30.0f), glm::vec3(0, 1, 0));
+
+	vertex3 = glm::vec3(rotation * glm::vec4(vertex3, 1.0f));
+
+	TheDebug::Instance()->DrawVector3D(vertex3.x, vertex3.y, vertex3.z, 5.0f, 1.0f, 0.1, 0.8);
+
+
+
+	glm::vec2 vertC(2, 3);
+	glm::mat4 scaling;
+
+	scaling = glm::scale(scaling, glm::vec3(0.25, 2, 0));
+
+	TheDebug::Instance()->DrawVector3D(vertC.x, vertC.y, 0, 5.0f, 0.7f, 0.1, 0.8);
+
+
+
+
+
+
+
+
+
+
 
 
 

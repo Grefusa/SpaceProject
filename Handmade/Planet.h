@@ -5,7 +5,7 @@
 #include"GameObject.h"
 
 
-class Planet : Public GameObject {
+class Planet : public GameObject {
 
 public:
 	Planet();
