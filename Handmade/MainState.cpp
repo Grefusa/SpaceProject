@@ -155,13 +155,13 @@ bool MainState::Draw()
 
 	glm::mat4 rotation;
 
-	TheDebug::Instance()->DrawVector3D(vertex3.x, vertex3.y, vertex3.z, 5.0f, 0.7f, 0.1, 0.8);
+	TheDebug::Instance()->DrawVector3D(vertex3.x, vertex3.y, vertex3.z, 5.0f, 0.7f, 0.1f, 0.8f);
 
 	rotation = glm::rotate(rotation, glm::radians(30.0f), glm::vec3(0, 1, 0));
 
 	vertex3 = glm::vec3(rotation * glm::vec4(vertex3, 1.0f));
 
-	TheDebug::Instance()->DrawVector3D(vertex3.x, vertex3.y, vertex3.z, 5.0f, 1.0f, 0.1, 0.8);
+	TheDebug::Instance()->DrawVector3D(vertex3.x, vertex3.y, vertex3.z, 5.0f, 1.0f, 0.1f, 0.8f);
 
 
 
@@ -170,7 +170,7 @@ bool MainState::Draw()
 
 	scaling = glm::scale(scaling, glm::vec3(0.25, 2, 0));
 
-	TheDebug::Instance()->DrawVector3D(vertC.x, vertC.y, 0, 5.0f, 0.7f, 0.1, 0.8);
+	TheDebug::Instance()->DrawVector3D(vertC.x, vertC.y, 0, 5.0f, 0.7f, 0.1f, 0.8f);
 
 
 

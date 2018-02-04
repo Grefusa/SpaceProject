@@ -20,7 +20,27 @@ glm::vec3 Planet::GetPos() {
 
 }
 
+void Planet::Update() {
 
-Planet::~Planet()
-{
+	m_direction = glm::vec3(0, 1, 1);
+
+	m_position += m_direction * m_velocity;
+
+
+}
+
+void Planet::Draw() {
+
+	GameObject::SetIdentity();
+
+	GameObject::Translate(m_position.x, m_position.y, m_position.z);
+	TheDebug::Instance()->DrawSphere3D(3.0f, 1, 1, 0);
+
+
+}
+
+
+Planet::~Planet() {
+
+
 }
